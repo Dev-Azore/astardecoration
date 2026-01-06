@@ -45,7 +45,7 @@ export const Hero: React.FC<HeroProps> = ({
       {/* Poster Image Background (Always visible first) */}
       {imageSrc && (
         <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center z-0 opacity-60"
+          className={`absolute inset-0 w-full h-full bg-cover bg-center z-0 transition-opacity duration-1000 ${videoLoaded ? 'opacity-0' : 'opacity-60'}`}
           style={{ backgroundImage: `url(${imageSrc})` }}
         />
       )}
