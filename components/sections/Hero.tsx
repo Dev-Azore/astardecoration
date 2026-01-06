@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState, useEffect, useRef } from "react"
 
 interface HeroProps {
   title: string
@@ -19,19 +19,48 @@ export const Hero: React.FC<HeroProps> = ({
   videoSrc,
   imageSrc,
 }) => {
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    // Load video after page content is ready
+    if (videoSrc && videoRef.current) {
+      const timer = setTimeout(() => {
+        if (videoRef.current) {
+          videoRef.current.src = videoSrc
+          videoRef.current.load()
+        }
+      }, 500) // Delay video load by 500ms to prioritize page content
+
+      return () => clearTimeout(timer)
+    }
+  }, [videoSrc])
+
+  const handleVideoLoaded = () => {
+    setVideoLoaded(true)
+  }
+
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Video Background */}
+      {/* Poster Image Background (Always visible first) */}
+      {imageSrc && (
+        <div
+          className="absolute inset-0 w-full h-full bg-cover bg-center z-0 opacity-60"
+          style={{ backgroundImage: `url(${imageSrc})` }}
+        />
+      )}
+
+      {/* Video Background (Fades in when loaded) */}
       {videoSrc && (
         <video
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-60"
-          src={videoSrc}
+          ref={videoRef}
+          className={`absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-1000 ${videoLoaded ? 'opacity-60' : 'opacity-0'
+            }`}
           autoPlay
           loop
           muted
           playsInline
-          preload="metadata"
-          poster={imageSrc}
+          onLoadedData={handleVideoLoaded}
         />
       )}
 
