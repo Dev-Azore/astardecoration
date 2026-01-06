@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #D4AF37;
+  /* Metallic Gold */
+  --color-primary-foreground: #000000;
+  --color-background: #0a0a0a;
+  --color-foreground: #ffffff;
+  --color-secondary: #262626;
+  --color-secondary-foreground: #a3a3a3;
+  --color-muted: #171717;
+  --color-muted-foreground: #737373;
+  --color-accent: #D4AF37;
+  --color-accent-foreground: #000000;
+  --color-border: #333333;
+
+  --color-gold-50: #fffcf0;
+  --color-gold-100: #fff9db;
+  --color-gold-200: #fff0b8;
+  --color-gold-300: #ffe185;
+  --color-gold-400: #ffd352;
+  --color-gold-500: #d4af37;
+  --color-gold-600: #99741b;
+  --color-gold-700: #7a5a16;
+  --color-gold-800: #664b18;
+  --color-gold-900: #574019;
+}
+
+:root {
+  --primary: #D4AF37;
+  --primary-foreground: #000000;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --secondary: #262626;
+  --secondary-foreground: #a3a3a3;
+  --muted: #171717;
+  --muted-foreground: #737373;
+  --accent: #D4AF37;
+  --accent-foreground: #000000;
+  --border: #333333;
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    @apply antialiased;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.container {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.glass {
+  background: rgba(23, 23, 23, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #D4AF37, #99741b);
+}
+
+.btn-premium {
+  @apply px-10 py-4 bg-primary text-black font-bold uppercase tracking-widest text-xs transition-all duration-300 hover:bg-gold-400 hover:scale-105 active:scale-95 shadow-xl shadow-primary/20;
+}
+
+.btn-outline {
+  @apply px-10 py-4 border border-primary/50 text-primary font-bold uppercase tracking-widest text-xs transition-all duration-300 hover:bg-primary/10 hover:border-primary hover:scale-105;
+}
+
+/* Custom animations */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-reveal {
+  animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
