@@ -67,6 +67,7 @@ export default function HomePage() {
               <img
                 src="/images/gallery/IMG-20240523-WA0022.jpg"
                 alt="A.Star Decoration Setup"
+                loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
               />
               <div className="absolute bottom-6 left-6 z-20 glass p-6 border-white/10 max-w-[180px] group-hover:scale-105 transition-transform duration-700">

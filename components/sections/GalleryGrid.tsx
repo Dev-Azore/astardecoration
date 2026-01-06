@@ -23,11 +23,16 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ limit, onImageClick }) => {
           >
             <div className="absolute inset-0 z-0">
               {img.type === 'video' ? (
-                <video src={img.src} className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110" />
+                <video
+                  src={img.src}
+                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
+                  preload="none"
+                />
               ) : (
                 <img
                   src={img.src}
                   alt={img.alt}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-all duration-[1.5s] group-hover:scale-110"
                 />
               )}

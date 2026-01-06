@@ -30,6 +30,7 @@ export const Hero: React.FC<HeroProps> = ({
           loop
           muted
           playsInline
+          preload="metadata"
           poster={imageSrc}
         />
       )}
